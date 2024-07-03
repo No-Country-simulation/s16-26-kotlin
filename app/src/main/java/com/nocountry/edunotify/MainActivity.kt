@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import com.nocountry.edunotify.ui.components.TabRowComponent
 import com.nocountry.edunotify.ui.screens.login.LoginScreen
 import com.nocountry.edunotify.ui.theme.EduNotifyTheme
 
@@ -21,7 +22,8 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     //EduNotifyApp()
-                    LoginScreen()
+                    //LoginScreen()
+                    TabRowComponent()
                 }
             }
         }

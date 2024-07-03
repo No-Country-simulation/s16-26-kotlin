@@ -2,6 +2,12 @@
     <string name="app_name">EduNotify</string>
 
     <!--Login-->
-    <string name="username_label">username or email</string>
-    <string name="password_label">password</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="mail">Mail</string>
+    <string name="password">Contraseña</string>
+    <string name="username_label">Ingresa tu email</string>
+    <string name="password_label">Ingresa tu contraseña</string>
+
+    <!--Register-->
+    <string name="register">Crear cuenta</string>
 </resources>
