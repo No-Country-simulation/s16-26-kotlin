@@ -32,7 +32,9 @@ fun TextFieldComponent(
     leadingIcon: ImageVector?,
     trailingIcon: @Composable () -> Unit,
     keyboardOptions: KeyboardOptions,
-    visualTransformation: VisualTransformation
+    visualTransformation: VisualTransformation,
+    supportingText: @Composable() (() -> Unit)? = null,
+    isError: Boolean = false,
 ) {
     Column {
         Text(text = stringResource(id = title), style = MaterialTheme.typography.bodySmall)
@@ -60,7 +62,9 @@ fun TextFieldComponent(
             trailingIcon = { trailingIcon() },
             keyboardOptions = keyboardOptions,
             visualTransformation = visualTransformation,
-            textStyle = MaterialTheme.typography.bodyMedium
+            textStyle = MaterialTheme.typography.bodyMedium,
+            supportingText = supportingText,
+            isError = isError
         )
     }
 }
@@ -73,7 +77,7 @@ fun TextFieldComponentPreview() {
             title = R.string.mail,
             value = "",
             onValueChange = { /*TODO*/ },
-            label = R.string.username_label,
+            label = R.string.mail_label,
             leadingIcon = Icons.Default.Email,
             trailingIcon = { },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),

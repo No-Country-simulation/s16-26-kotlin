@@ -36,7 +36,6 @@ fun TabRowComponent() {
     val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
-        //topBar = { TopAppBarComponent() },
         modifier = Modifier
             .fillMaxSize()
     ) {
