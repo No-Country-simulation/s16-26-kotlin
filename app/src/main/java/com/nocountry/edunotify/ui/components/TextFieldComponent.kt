@@ -30,7 +30,7 @@ fun TextFieldComponent(
     onValueChange: (String) -> Unit,
     label: Int,
     leadingIcon: ImageVector?,
-    trailingIcon: ImageVector?,
+    trailingIcon: @Composable () -> Unit,
     keyboardOptions: KeyboardOptions,
     visualTransformation: VisualTransformation
 ) {
@@ -57,17 +57,10 @@ fun TextFieldComponent(
                     )
                 }
             },
-            trailingIcon = {
-                if (trailingIcon != null) {
-                    Icon(
-                        imageVector = trailingIcon,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.primary
-                    )
-                }
-            },
+            trailingIcon = { trailingIcon() },
             keyboardOptions = keyboardOptions,
-            visualTransformation = visualTransformation
+            visualTransformation = visualTransformation,
+            textStyle = MaterialTheme.typography.bodyMedium
         )
     }
 }
@@ -82,7 +75,7 @@ fun TextFieldComponentPreview() {
             onValueChange = { /*TODO*/ },
             label = R.string.username_label,
             leadingIcon = Icons.Default.Email,
-            trailingIcon = null,
+            trailingIcon = { },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
             visualTransformation = VisualTransformation.None
         )
