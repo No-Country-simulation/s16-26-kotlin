@@ -4,10 +4,12 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
@@ -33,29 +35,39 @@ fun TabRowComponent() {
     val pagerState = rememberPagerState { tabItem.size }
     val coroutineScope = rememberCoroutineScope()
 
-    Column(modifier = Modifier.fillMaxSize()) {
-        TabRow(
-            selectedTabIndex = pagerState.currentPage,
-            modifier = Modifier.fillMaxWidth(),
+    Scaffold(
+        //topBar = { TopAppBarComponent() },
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        Column(
+            modifier = Modifier
+                .padding(it)
         ) {
-            tabItem.forEachIndexed { index, title ->
-                Tab(
-                    selected = pagerState.currentPage == index,
-                    onClick = {
-                        coroutineScope.launch {
-                            pagerState.animateScrollToPage(index)
+            TabRow(
+                selectedTabIndex = pagerState.currentPage,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                tabItem.forEachIndexed { index, title ->
+                    Tab(
+                        selected = pagerState.currentPage == index,
+                        onClick = {
+                            coroutineScope.launch {
+                                pagerState.animateScrollToPage(index)
+                            }
+                        },
+                        text = {
+                            Text(
+                                text = title,
+                                color = if (pagerState.currentPage == index) MaterialTheme.colorScheme.primary else Color.Gray,
+                                style = MaterialTheme.typography.bodyMedium
+                            )
                         }
-                    },
-                    text = {
-                        Text(
-                            text = title,
-                            color = if (pagerState.currentPage == index) MaterialTheme.colorScheme.primary else Color.Gray
-                        )
-                    }
-                )
+                    )
+                }
             }
+            TabsContent(pagerState = pagerState)
         }
-        TabsContent(pagerState = pagerState)
     }
 }
 
