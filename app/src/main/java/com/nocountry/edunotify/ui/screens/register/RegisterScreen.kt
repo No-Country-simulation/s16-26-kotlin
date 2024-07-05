@@ -26,11 +26,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nocountry.edunotify.R
 import com.nocountry.edunotify.ui.components.ButtonComponent
 import com.nocountry.edunotify.ui.components.SpacerComponent
 import com.nocountry.edunotify.ui.components.TextFieldComponent
+import com.nocountry.edunotify.ui.components.TextFieldEmpty
+import com.nocountry.edunotify.ui.theme.EduNotifyTheme
 
 @Composable
 fun RegisterScreen() {
@@ -46,14 +49,7 @@ fun RegisterScreen() {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.logo),
-                    contentDescription = "logo",
-                    modifier = Modifier.size(180.dp)
-                )
-                SpacerComponent(height = 20.dp)
                 RegisterFields()
-                SpacerComponent(height = 10.dp)
             }
         }
     }
@@ -67,8 +63,20 @@ fun RegisterFields() {
     var phone by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
 
+    var isNameEmpty by rememberSaveable { mutableStateOf(false) }
+    var isLastNameEmpty by rememberSaveable { mutableStateOf(false) }
+    var isMailEmpty by rememberSaveable { mutableStateOf(false) }
+    var isPhoneEmpty by rememberSaveable { mutableStateOf(false) }
+    var isPasswordEmpty by rememberSaveable { mutableStateOf(false) }
+
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
 
+    Image(
+        painter = painterResource(id = R.drawable.logo),
+        contentDescription = "logo",
+        modifier = Modifier.size(180.dp)
+    )
+    SpacerComponent(height = 5.dp)
     TextFieldComponent(
         title = R.string.name,
         value = name,
@@ -77,8 +85,15 @@ fun RegisterFields() {
         leadingIcon = null,
         trailingIcon = { },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-        visualTransformation = VisualTransformation.None
+        visualTransformation = VisualTransformation.None,
+        supportingText = {
+            if (isNameEmpty) {
+                TextFieldEmpty()
+            }
+        },
+        isError = isNameEmpty
     )
+    SpacerComponent(height = 5.dp)
     TextFieldComponent(
         title = R.string.last_name,
         value = lastName,
@@ -87,8 +102,15 @@ fun RegisterFields() {
         leadingIcon = null,
         trailingIcon = { },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-        visualTransformation = VisualTransformation.None
+        visualTransformation = VisualTransformation.None,
+        supportingText = {
+            if (isLastNameEmpty) {
+                TextFieldEmpty()
+            }
+        },
+        isError = isLastNameEmpty
     )
+    SpacerComponent(height = 5.dp)
     TextFieldComponent(
         title = R.string.mail,
         value = mail,
@@ -97,8 +119,15 @@ fun RegisterFields() {
         leadingIcon = Icons.Default.Email,
         trailingIcon = { },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-        visualTransformation = VisualTransformation.None
+        visualTransformation = VisualTransformation.None,
+        supportingText = {
+            if (isMailEmpty) {
+                TextFieldEmpty()
+            }
+        },
+        isError = isMailEmpty
     )
+    SpacerComponent(height = 5.dp)
     TextFieldComponent(
         title = R.string.phone,
         value = phone,
@@ -107,8 +136,15 @@ fun RegisterFields() {
         leadingIcon = null,
         trailingIcon = { },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
-        visualTransformation = VisualTransformation.None
+        visualTransformation = VisualTransformation.None,
+        supportingText = {
+            if (isPhoneEmpty) {
+                TextFieldEmpty()
+            }
+        },
+        isError = isPhoneEmpty
     )
+    SpacerComponent(height = 5.dp)
     TextFieldComponent(
         title = R.string.password,
         value = password,
@@ -128,15 +164,32 @@ fun RegisterFields() {
         },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
         visualTransformation =
-        if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation()
+        if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+        supportingText = {
+            if (isPasswordEmpty) {
+                TextFieldEmpty()
+            }
+        },
+        isError = isPasswordEmpty
     )
+    SpacerComponent(height = 15.dp)
     ButtonComponent(
         text = R.string.register,
         onClick = {
-            if (
-                name.isNotBlank() && lastName.isNotBlank() && mail.isNotBlank() && phone.isNotBlank() && password.isNotBlank()) {
+            if (name.isNotBlank() && lastName.isNotBlank()
+                && mail.isNotBlank() && phone.isNotBlank()
+                && password.isNotBlank()
+            ) {
 
             }
         }
     )
+}
+
+@Preview
+@Composable
+fun RegisterScreenPreview() {
+    EduNotifyTheme {
+        RegisterScreen()
+    }
 }

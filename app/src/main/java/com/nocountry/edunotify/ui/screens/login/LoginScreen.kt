@@ -50,6 +50,7 @@ import com.nocountry.edunotify.R
 import com.nocountry.edunotify.ui.components.ButtonComponent
 import com.nocountry.edunotify.ui.components.SpacerComponent
 import com.nocountry.edunotify.ui.components.TextFieldComponent
+import com.nocountry.edunotify.ui.components.TextFieldEmpty
 import com.nocountry.edunotify.ui.theme.EduNotifyTheme
 
 @Composable
@@ -98,15 +99,12 @@ fun LoginFields() {
         visualTransformation = VisualTransformation.None,
         supportingText = {
             if (isEmailEmpty) {
-                Text(
-                    text = stringResource(id = R.string.error_label),
-                    style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.Normal)
-                )
+                TextFieldEmpty()
             }
         },
         isError = isEmailEmpty
     )
-    Spacer(modifier = Modifier.height(20.dp))
+    SpacerComponent(height = 5.dp)
     TextFieldComponent(
         title = R.string.password,
         value = password,
@@ -133,15 +131,12 @@ fun LoginFields() {
         if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
         supportingText = {
             if (isPasswordEmpty) {
-                Text(
-                    text = stringResource(id = R.string.error_label),
-                    style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.Normal)
-                )
+                TextFieldEmpty()
             }
         },
         isError = isPasswordEmpty
     )
-    SpacerComponent(height = 50.dp)
+    SpacerComponent(height = 30.dp)
     ButtonComponent(
         text = R.string.login,
         onClick = {
