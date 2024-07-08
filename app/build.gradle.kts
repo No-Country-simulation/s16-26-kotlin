@@ -63,6 +63,9 @@ dependencies {
     //Extended icons
     implementation(libs.androidx.compose.material)
 
+    //VerticalScrollbar
+    implementation(libs.androidx.foundation)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

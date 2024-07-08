@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.nocountry.edunotify.R
 import com.nocountry.edunotify.ui.screens.login.LoginScreen
 import com.nocountry.edunotify.ui.screens.register.RegisterScreen
+import com.nocountry.edunotify.ui.screens.register.schools
 import com.nocountry.edunotify.ui.theme.EduNotifyTheme
 import kotlinx.coroutines.launch
 
@@ -85,7 +86,7 @@ fun TabsContent(pagerState: PagerState) {
             }
 
             1 -> {
-                RegisterScreen()
+                RegisterScreen(schools)
             }
         }
     }

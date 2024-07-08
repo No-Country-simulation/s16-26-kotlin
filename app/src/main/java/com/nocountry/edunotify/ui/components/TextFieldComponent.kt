@@ -38,7 +38,7 @@ fun TextFieldComponent(
 ) {
     Column {
         Text(text = stringResource(id = title), style = MaterialTheme.typography.bodySmall)
-        Spacer(modifier = Modifier.height(5.dp))
+        SpacerComponent(height = 5.dp)
         OutlinedTextField(
             modifier = Modifier.width(380.dp),
             value = value,

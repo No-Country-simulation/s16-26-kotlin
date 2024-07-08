@@ -7,7 +7,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -25,7 +24,6 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -38,7 +36,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -55,27 +52,20 @@ import com.nocountry.edunotify.ui.theme.EduNotifyTheme
 
 @Composable
 fun LoginScreen() {
-    Scaffold {
-        Surface(
-            modifier = Modifier
-                .padding(it)
-                .fillMaxSize()
-        ) {
-            Column(
-                modifier = Modifier
-                    .padding(15.dp),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                LoginFields()
-            }
-        }
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(15.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        LoginFields()
     }
 }
 
 @Composable
 fun LoginFields() {
-    var email by rememberSaveable { mutableStateOf("") }
+    var mail by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
 
@@ -90,8 +80,11 @@ fun LoginFields() {
     SpacerComponent(height = 50.dp)
     TextFieldComponent(
         title = R.string.mail,
-        value = email,
-        onValueChange = { email = it },
+        value = mail,
+        onValueChange = {
+            mail = it
+            isEmailEmpty = mail.isEmpty()
+        },
         label = R.string.mail_label,
         leadingIcon = Icons.Default.Email,
         trailingIcon = { },
@@ -108,7 +101,10 @@ fun LoginFields() {
     TextFieldComponent(
         title = R.string.password,
         value = password,
-        onValueChange = { password = it },
+        onValueChange = {
+            password = it
+            isPasswordEmpty = password.isEmpty()
+        },
         label = R.string.password_label,
         leadingIcon = Icons.Default.Password,
         trailingIcon = {
@@ -140,13 +136,13 @@ fun LoginFields() {
     ButtonComponent(
         text = R.string.login,
         onClick = {
-            if (email.isNotEmpty() && password.isNotEmpty()) {
+            if (mail.isNotEmpty() && password.isNotEmpty()) {
                 isEmailEmpty = false
                 isPasswordEmpty = false
 
                 //Access via ViewModel
             } else {
-                isEmailEmpty = email.isEmpty()
+                isEmailEmpty = mail.isEmpty()
                 isPasswordEmpty = password.isEmpty()
             }
         }
@@ -203,7 +199,7 @@ fun SocialMediaCard(image: Int) {
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun LoginScreenPreview() {
     EduNotifyTheme {

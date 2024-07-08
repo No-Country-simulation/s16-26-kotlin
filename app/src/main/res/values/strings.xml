@@ -16,7 +16,7 @@
     <string name="last_name">Apellido</string>
     <string name="last_name_label">Ingresa tu apellido</string>
     <string name="phone">Teléfono</string>
-    <string name="phone_label">+54 320 450 3432</string>
+    <string name="phone_label">Ingresa tu número celular</string>
     <string name="school">Escuela</string>
     <string name="school_tag">Elige una escuela</string>
     <string name="no_account">¿No tienes una cuenta? Crear cuenta</string>
