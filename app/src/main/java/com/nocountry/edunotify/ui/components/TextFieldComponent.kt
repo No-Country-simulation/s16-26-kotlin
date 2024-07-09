@@ -1,8 +1,6 @@
 package com.nocountry.edunotify.ui.components
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -33,7 +31,7 @@ fun TextFieldComponent(
     trailingIcon: @Composable () -> Unit,
     keyboardOptions: KeyboardOptions,
     visualTransformation: VisualTransformation,
-    supportingText: @Composable() (() -> Unit)? = null,
+    supportingText: @Composable (() -> Unit)? = null,
     isError: Boolean = false,
 ) {
     Column {

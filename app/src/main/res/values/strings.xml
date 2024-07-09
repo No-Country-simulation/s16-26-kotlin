@@ -20,4 +20,9 @@
     <string name="school">Escuela</string>
     <string name="school_tag">Elige una escuela</string>
     <string name="no_account">¿No tienes una cuenta? Crear cuenta</string>
+
+    <!-- Profile-->
+    <string name="profile_top_bar">Mi Perfil</string>
+    <string name="profile_edit_button">Editar perfil</string>
+    <string name="profile_save_button">Guardar</string>
 </resources>
