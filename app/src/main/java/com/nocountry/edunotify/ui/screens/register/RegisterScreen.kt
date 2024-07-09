@@ -231,7 +231,8 @@ fun RegisterFields(schools: List<School>) {
                 isPhoneEmpty = phone.isEmpty()
                 isPasswordEmpty = password.isEmpty()
             }
-        }
+        },
+        isSelected = false
     )
 }
 

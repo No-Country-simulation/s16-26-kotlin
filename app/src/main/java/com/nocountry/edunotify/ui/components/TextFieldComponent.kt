@@ -33,6 +33,7 @@ fun TextFieldComponent(
     visualTransformation: VisualTransformation,
     supportingText: @Composable (() -> Unit)? = null,
     isError: Boolean = false,
+    readOnly: Boolean = false,
 ) {
     Column {
         Text(text = stringResource(id = title), style = MaterialTheme.typography.bodySmall)
@@ -62,7 +63,8 @@ fun TextFieldComponent(
             visualTransformation = visualTransformation,
             textStyle = MaterialTheme.typography.bodyMedium,
             supportingText = supportingText,
-            isError = isError
+            isError = isError,
+            readOnly = readOnly
         )
     }
 }

@@ -145,7 +145,8 @@ fun LoginFields() {
                 isEmailEmpty = mail.isEmpty()
                 isPasswordEmpty = password.isEmpty()
             }
-        }
+        },
+        isSelected = false
     )
     SpacerComponent(height = 20.dp)
     Text(

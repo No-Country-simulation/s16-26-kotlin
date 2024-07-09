@@ -44,7 +44,6 @@ fun ProfileScreen() {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
             ProfileFields()
         }
     }
@@ -64,13 +63,14 @@ fun ProfileFields() {
     var isLastNameEditable by rememberSaveable { mutableStateOf(false) }
     var isPhoneEditable by rememberSaveable { mutableStateOf(false) }
 
+    var isEditSelected by rememberSaveable { mutableStateOf(false) }
+    var isSaveSelected by rememberSaveable { mutableStateOf(false) }
+
     TextFieldComponent(
         title = R.string.name,
         value = name,
         onValueChange = {
-            if (isNameEditable) {
-                name = it
-            }
+            name = it
             isNameEmpty = name.isEmpty()
         },
         label = R.string.name_label,
@@ -83,16 +83,15 @@ fun ProfileFields() {
                 TextFieldEmpty()
             }
         },
-        isError = isNameEmpty
+        isError = isNameEmpty,
+        readOnly = !isNameEditable
     )
     SpacerComponent(height = 5.dp)
     TextFieldComponent(
         title = R.string.last_name,
         value = lastName,
         onValueChange = {
-            if (isLastNameEditable) {
-                lastName = it
-            }
+            lastName = it
             isLastNameEmpty = lastName.isEmpty()
         },
         label = R.string.last_name_label,
@@ -105,16 +104,15 @@ fun ProfileFields() {
                 TextFieldEmpty()
             }
         },
-        isError = isLastNameEmpty
+        isError = isLastNameEmpty,
+        readOnly = !isLastNameEditable
     )
     SpacerComponent(height = 5.dp)
     TextFieldComponent(
         title = R.string.phone,
         value = phone,
         onValueChange = {
-            if (isPhoneEditable) {
-                phone = it
-            }
+            phone = it
             isPhoneEmpty = phone.isEmpty()
         },
         label = R.string.phone_label,
@@ -127,7 +125,8 @@ fun ProfileFields() {
                 TextFieldEmpty()
             }
         },
-        isError = isPhoneEmpty
+        isError = isPhoneEmpty,
+        readOnly = !isPhoneEditable
     )
     SpacerComponent(height = 50.dp)
     ButtonComponent(
@@ -136,10 +135,14 @@ fun ProfileFields() {
             isNameEditable = true
             isLastNameEditable = true
             isPhoneEditable = true
-        }
+            isEditSelected = true
+            isSaveSelected = false
+        },
+        isSelected = isEditSelected
     )
     SpacerComponent(height = 20.dp)
-    ButtonComponent(text = R.string.profile_save_button,
+    ButtonComponent(
+        text = R.string.profile_save_button,
         onClick = {
             if (name.isNotEmpty() && lastName.isNotEmpty()
                 && phone.isNotEmpty()
@@ -147,8 +150,11 @@ fun ProfileFields() {
                 isNameEditable = false
                 isLastNameEditable = false
                 isPhoneEditable = false
+                isSaveSelected = true
+                isEditSelected = false
             }
-        }
+        },
+        isSelected = isSaveSelected
     )
 
 }
