@@ -25,4 +25,9 @@
     <string name="profile_top_bar">Mi Perfil</string>
     <string name="profile_edit_button">Editar perfil</string>
     <string name="profile_save_button">Guardar</string>
+
+    <!-- Home-->
+    <string name="home_no_notifications_title">No tienes notificaciones!</string>
+    <string name="home_no_notifications_message">Agrega un curso para empezar a recibir mensajes</string>
+
 </resources>

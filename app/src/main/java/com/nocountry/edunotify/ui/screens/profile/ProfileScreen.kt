@@ -18,7 +18,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nocountry.edunotify.R
-import com.nocountry.edunotify.ui.components.BackButtonComponent
+import com.nocountry.edunotify.ui.components.CircleButtonComponent
 import com.nocountry.edunotify.ui.components.ButtonComponent
 import com.nocountry.edunotify.ui.components.SpacerComponent
 import com.nocountry.edunotify.ui.components.TextFieldComponent
@@ -32,7 +32,7 @@ fun ProfileScreen() {
         topBar = {
             TopAppBarComponent(
                 title = R.string.profile_top_bar,
-                navigationIcon = { BackButtonComponent(onClickBack = {}) },
+                navigationIcon = { CircleButtonComponent(onClick = {}, icon = R.drawable.arrow_back) },
                 actions = null
             )
         }
