@@ -46,7 +46,7 @@ fun <T> TextButtonComponent(
 
     Box(
         modifier = modifier
-            .fillMaxWidth()
+            .width(350.dp)
             .onGloballyPositioned { coordinates ->
                 buttonSize = coordinates.size
             }

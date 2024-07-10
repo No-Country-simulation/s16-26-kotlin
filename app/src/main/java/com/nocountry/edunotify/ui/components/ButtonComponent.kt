@@ -42,7 +42,7 @@ fun ButtonComponent(
             onClick()
         },
         modifier = modifier
-            .width(380.dp)
+            .width(350.dp)
             .height(52.dp)
             .background(
                 color = backgroundColor,

@@ -1,9 +1,9 @@
 package com.nocountry.edunotify.ui.screens.profile
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -18,8 +18,9 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nocountry.edunotify.R
-import com.nocountry.edunotify.ui.components.CircleButtonComponent
+import com.nocountry.edunotify.ui.components.BottomNavigationBar
 import com.nocountry.edunotify.ui.components.ButtonComponent
+import com.nocountry.edunotify.ui.components.CircleButtonComponent
 import com.nocountry.edunotify.ui.components.SpacerComponent
 import com.nocountry.edunotify.ui.components.TextFieldComponent
 import com.nocountry.edunotify.ui.components.TextFieldEmpty
@@ -32,19 +33,27 @@ fun ProfileScreen() {
         topBar = {
             TopAppBarComponent(
                 title = R.string.profile_top_bar,
-                navigationIcon = { CircleButtonComponent(onClick = {}, icon = R.drawable.arrow_back) },
+                navigationIcon = {
+                    CircleButtonComponent(
+                        onClick = {},
+                        icon = R.drawable.arrow_back
+                    )
+                },
                 actions = null
             )
-        }
+        },
+        bottomBar = { BottomNavigationBar() }
     ) {
-        Column(
+        LazyColumn(
             modifier = Modifier
                 .padding(it)
                 .fillMaxSize(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            ProfileFields()
+            item {
+                ProfileFields()
+            }
         }
     }
 }
@@ -156,7 +165,12 @@ fun ProfileFields() {
         },
         isSelected = isSaveSelected
     )
-
+    SpacerComponent(height = 20.dp)
+    ButtonComponent(
+        text = R.string.logout,
+        onClick = { },
+        isSelected = isSaveSelected
+    )
 }
 
 @Preview(showBackground = true)

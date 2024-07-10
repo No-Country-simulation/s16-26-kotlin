@@ -39,7 +39,7 @@ fun TextFieldComponent(
         Text(text = stringResource(id = title), style = MaterialTheme.typography.bodySmall)
         SpacerComponent(height = 5.dp)
         OutlinedTextField(
-            modifier = Modifier.width(380.dp),
+            modifier = Modifier.width(350.dp),
             value = value,
             onValueChange = onValueChange,
             label = {

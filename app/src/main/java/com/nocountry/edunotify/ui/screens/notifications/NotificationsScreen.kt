@@ -1,4 +1,4 @@
-package com.nocountry.edunotify.ui.screens.home
+package com.nocountry.edunotify.ui.screens.notifications
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -33,6 +33,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nocountry.edunotify.R
+import com.nocountry.edunotify.ui.components.BottomNavigationBar
 import com.nocountry.edunotify.ui.components.CircleButtonComponent
 import com.nocountry.edunotify.ui.components.SpacerComponent
 import com.nocountry.edunotify.ui.components.TopAppBarComponent
@@ -41,19 +42,24 @@ import com.nocountry.edunotify.ui.theme.EduNotifyTheme
 
 //Mock data
 data class Notification(
+    val title: String,
     val message: String,
     val expiration: Int
 )
 
 val notifications = listOf(
-    Notification(message = "Message1", expiration = 1),
-    Notification(message = "Message2", expiration = 1),
-    Notification(message = "Message3", expiration = 1),
-    Notification(message = "Message4", expiration = 1),
+    Notification(
+        title = "Title 1",
+        message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        expiration = 1
+    ),
+    Notification(title = "Title 2", message = "Message2", expiration = 1),
+    Notification(title = "Title 3", message = "Message3", expiration = 1),
+    Notification(title = "Title 4", message = "Message4", expiration = 1),
 )
 
 @Composable
-fun HomeScreen(notifications: List<Notification>) {
+fun NotificationsScreen(notifications: List<Notification>) {
     val message by rememberSaveable { mutableStateOf(notifications[0].message) }
 
     Scaffold(
@@ -68,7 +74,9 @@ fun HomeScreen(notifications: List<Notification>) {
                     )
                 },
             )
-        }
+        },
+        bottomBar = { BottomNavigationBar() },
+        floatingActionButton = { AddNewCourse() }
     ) {
         Box(
             modifier = Modifier
@@ -80,13 +88,9 @@ fun HomeScreen(notifications: List<Notification>) {
             } else {
                 CourseEmptyList(
                     modifier = Modifier
-                        .align(Alignment.TopCenter)
+                        .align(Alignment.Center)
                 )
             }
-            AddNewCourse(
-                modifier = Modifier
-                    .align(Alignment.BottomCenter)
-            )
         }
     }
 }
@@ -110,27 +114,26 @@ fun CourseCard(notification: Notification, modifier: Modifier = Modifier) {
         modifier = modifier
             .fillMaxSize()
             .shadow(4.dp, shape = RoundedCornerShape(8.dp)),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.inverseOnSurface),
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.inversePrimary),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+        border = BorderStroke(3.dp, MaterialTheme.colorScheme.inversePrimary),
         shape = RoundedCornerShape(8.dp)
     ) {
         Text(
-            text = notification.message,
-            style = MaterialTheme.typography.bodyMedium,
+            text = notification.title,
+            style = MaterialTheme.typography.bodyLarge,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(10.dp)
+                .padding(start = 10.dp, top = 10.dp, bottom = 5.dp)
         )
-        SpacerComponent(height = 5.dp)
         Text(
             text = "Expira en ${notification.expiration} semana",
             textAlign = TextAlign.End,
             style = MaterialTheme.typography.labelLarge,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(10.dp)
+                .padding(end = 10.dp, bottom = 10.dp)
         )
     }
 }
@@ -151,12 +154,12 @@ fun CourseEmptyList(modifier: Modifier = Modifier) {
         )
         SpacerComponent(height = 10.dp)
         Text(
-            text = stringResource(id = R.string.home_no_notifications_title),
+            text = stringResource(id = R.string.no_notifications_title),
             style = MaterialTheme.typography.titleSmall,
             color = MaterialTheme.colorScheme.primary
         )
         Text(
-            text = stringResource(id = R.string.home_no_notifications_message),
+            text = stringResource(id = R.string.no_notifications_message),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.primary
         )
@@ -180,6 +183,6 @@ fun AddNewCourse(modifier: Modifier = Modifier) {
 @Composable
 fun HomeScreenPreview() {
     EduNotifyTheme {
-        HomeScreen(notifications)
+        NotificationsScreen(notifications)
     }
 }
