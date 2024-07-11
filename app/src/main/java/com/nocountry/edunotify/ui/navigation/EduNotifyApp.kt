@@ -5,6 +5,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.nocountry.edunotify.ui.components.TabRowComponent
 import com.nocountry.edunotify.ui.screens.notifications.NotificationsScreen
 import com.nocountry.edunotify.ui.screens.notifications.notifications
 
@@ -14,6 +15,7 @@ fun EduNotifyApp() {
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
-        NotificationsScreen(notifications)
+        //NotificationsScreen(notifications)
+        TabRowComponent()
     }
 }

@@ -133,7 +133,7 @@ fun LoginFields() {
         isError = isPasswordEmpty
     )
     SpacerComponent(height = 30.dp)
-    ButtonComponent(
+     ButtonComponent(
         text = R.string.login,
         onClick = {
             if (mail.isNotEmpty() && password.isNotEmpty()) {
